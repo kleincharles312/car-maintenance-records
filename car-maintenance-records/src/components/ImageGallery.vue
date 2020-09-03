@@ -3,10 +3,13 @@
       <div class="img-move-left" @click="imgMoveLeft()">
           &lt;
       </div>
-      <div id="img-box">
-          <img src="https://live.staticflickr.com/1083/1112654629_cfd5ba8751_b.jpg" alt="Yellow 2003 Mini Cooper S hood from front right" v-if="imgIndex === 0" />
-          <img src="https://live.staticflickr.com/1392/1171507559_a36f1700e4_b.jpg" alt="Yellow 2003 Mini Cooper S from side" v-if="imgIndex === 1" />
-          <img src="https://live.staticflickr.com/1253/1172410372_3275d2941c_b.jpg" alt="Yellow 2003 Mini Cooper S front view with doors open" v-if="imgIndex === 2" />
+      <div class="img-box">
+          <img :src="displayImg.src" :alt="displayImg.alt" />
+          <div class="img-index-dots">
+              <div v-for="i in arrayOfImgObj.length"
+              :key="i"
+              :class="{'index-dot': true, 'active': imgIndex === (i - 1)}"></div>
+          </div>
       </div>
       <div class="img-move-right" @click="imgMoveRight()">
           &gt;
@@ -20,6 +23,14 @@ export default {
         return {
             imgIndex: 0
         }
+    },
+    computed: {
+        displayImg() {
+            return this.arrayOfImgObj[this.imgIndex]
+        }
+    },
+    props: {
+        arrayOfImgObj: Array
     },
     methods: {
         imgMoveLeft() {
@@ -44,7 +55,7 @@ img {
 .img-gallery {
     width: 500px;
     height: 300px;
-    background-color: grey;
+    background-color: rgba(211, 211, 211, 0.507);
     border: 2px solid black;
     border-radius: 5px;
     padding: 0px;
@@ -52,6 +63,7 @@ img {
     justify-content: space-evenly;
     align-content: space-around;
     margin: 0px auto 25px auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 .img-move-left, .img-move-right {
     color: black;
@@ -61,5 +73,24 @@ img {
     flex-direction: column;
     justify-content: center;
     cursor: pointer;
+}
+.img-index-dots {
+    position: relative;
+    bottom: 15px;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.274);
+}
+.index-dot {
+    width: 8px;
+    height: 8px;
+    margin: 2px 5px;
+    background-color: rgba(255, 255, 255, 0.801);
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: inset 1px 1px 1px grey;
+}
+.active {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 </style>
