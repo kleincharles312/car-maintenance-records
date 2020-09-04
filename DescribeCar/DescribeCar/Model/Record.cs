@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace DescribeCar.Model
 {
-    public class Pic
+    public class Record
     {
-        public int PicId { get; set; }
+        
+        public int RecordId { get; set; }
         [Required]
         public int CarId { get; set; }
+        public DateTime? Date {get; set; }
         [Required]
-        public string URL { get; set; }
+        public int Mileage { get; set; }
         [Required]
-        public string Alt { get; set; }
+        [MaxLength(300)]
+        public string Description { get; set; }
     }
 }
