@@ -4,7 +4,7 @@
           &lt;
       </div>
       <div class="img-box">
-          <img :src="displayImg.src" :alt="displayImg.alt" />
+          <img class="img-fluid" :src="displayImg.src" :alt="displayImg.alt" />
           <div class="img-index-dots">
               <div v-for="i in arrayOfImgObj.length"
               :key="i"
@@ -50,33 +50,40 @@ export default {
 
 <style scoped>
 img {
-    height: 300px;
+    width: auto;
+    height: 100%;
+    z-index: 2;
 }
 .img-gallery {
-    width: 500px;
-    height: 300px;
+    max-width: 75%;
+    max-height: 400px;
     background-color: rgba(211, 211, 211, 0.507);
     border: 2px solid black;
     border-radius: 5px;
     padding: 0px;
     display: flex;
-    justify-content: space-evenly;
-    align-content: space-around;
+    justify-content: center;
     margin: 0px auto 25px auto;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 .img-move-left, .img-move-right {
     color: black;
     font-size: 2em;
-    width: 50px;
+    width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-content: center;
     cursor: pointer;
+    z-index: 1;
+}
+.img-box {
+    width: 80%;
+    margin: 0px auto;
 }
 .img-index-dots {
     position: relative;
-    bottom: 15px;
+    bottom: 12px;
     display: flex;
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.274);

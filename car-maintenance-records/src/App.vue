@@ -5,6 +5,9 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+
+    <hr />
+    <footer>&copy; Charles Klein 2020</footer>
   </div>
 </template>
 
@@ -29,4 +32,8 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+hr {
+  margin-top: 50px;
+}
+
 </style>
