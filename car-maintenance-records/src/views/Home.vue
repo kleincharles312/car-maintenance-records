@@ -1,16 +1,19 @@
 <template>
   <div class="home">
     <image-gallery :arrayOfImgObj="arrayOfImgObj" />
+    <car-specs />
   </div>
 </template>
 
 <script>
 import ImageGallery from '@/components/ImageGallery.vue'
+import CarSpecs from '@/components/CarSpecs.vue'
 
 export default {
   name: 'Home',
   components: {
-    ImageGallery
+    ImageGallery,
+    CarSpecs
   },
   data() {
     return {
