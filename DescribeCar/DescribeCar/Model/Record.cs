@@ -12,7 +12,7 @@ namespace DescribeCar.Model
         public int RecordId { get; set; }
         [Required]
         public int CarId { get; set; }
-        public DateTime? Date {get; set; }
+        public DateTime? DateOfRecord {get; set; }
         [Required]
         public int Mileage { get; set; }
         [Required]

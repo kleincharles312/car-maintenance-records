@@ -21,7 +21,7 @@ namespace DescribeCar.DAO
         public List<Record> GetRecords(int carId)
         {
             List<Record> records = new List<Record>();
-            const string QUERY = "Select * from record Where carId = @id";
+            const string QUERY = "Select * from record Where carId = @id Order By mileage desc";
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -55,7 +55,7 @@ namespace DescribeCar.DAO
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(QUERY, conn);
                     cmd.Parameters.AddWithValue("@carId", carId);
-                    cmd.Parameters.AddWithValue("@dateOfRecord", newRecord.Date);
+                    cmd.Parameters.AddWithValue("@dateOfRecord", newRecord.DateOfRecord);
                     cmd.Parameters.AddWithValue("@mileage", newRecord.Mileage);
                     cmd.Parameters.AddWithValue("@description", newRecord.Description);
                     int newId = Convert.ToInt32(cmd.ExecuteScalar());
@@ -74,7 +74,7 @@ namespace DescribeCar.DAO
             Record result = new Record();
             result.RecordId = Convert.ToInt32(reader["recordId"]);
             result.CarId = Convert.ToInt32(reader["carId"]);
-            result.Date = Convert.ToDateTime(reader["dateOfRecord"]);
+            result.DateOfRecord = Convert.ToDateTime(reader["dateOfRecord"]);
             result.Mileage = Convert.ToInt32(reader["mileage"]);
             result.Description = Convert.ToString(reader["description"]);
             return result;

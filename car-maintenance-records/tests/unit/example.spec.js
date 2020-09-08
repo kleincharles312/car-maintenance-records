@@ -26,9 +26,11 @@ describe('Image changes on click', () => {
   
   it('Should change the image moving right', () => {
     const wrapper = imgGallery.find('div.img-move-right')
-    const wrapperImgFirst = imgGallery.find('#img-box > img')
+    //console.debug(wrapper)
+    const wrapperImgFirst = imgGallery.find('img')
+    //console.debug(wrapperImgFirst)
     wrapper.trigger('click')
-    const wrapperImgSecond = imgGallery.find('#img-box > img')
+    const wrapperImgSecond = imgGallery.find('img')
     expect(wrapperImgFirst.attributes('src')).to.not.equal(wrapperImgSecond.attributes('src'))
   })
 

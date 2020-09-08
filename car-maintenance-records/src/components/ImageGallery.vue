@@ -4,7 +4,7 @@
           &lt;
       </div>
       <div class="img-box">
-          <img class="img-fluid" :src="displayImg.src" :alt="displayImg.alt" />
+          <img class="img-fluid" :src="displayImg.url" :alt="displayImg.alt" />
           <div class="img-index-dots">
               <div v-for="i in arrayOfImgObj.length"
               :key="i"
@@ -69,7 +69,7 @@ img {
 .img-move-left, .img-move-right {
     color: black;
     font-size: 2em;
-    width: 30%;
+    width: 15%;
     display: flex;
     flex-direction: column;
     justify-content: center;
