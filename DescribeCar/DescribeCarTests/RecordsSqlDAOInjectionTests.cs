@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Data.SqlClient;
 using System.IO;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace DescribeCarTests
 {
     [TestClass]
-    public class CarSqlDAOInjectionTests
+    public class RecordsSqlDAOInjectionTests
     {
         private TransactionScope tran;
         private string connectionString = @"Server=.\sqlexpress;database=car_specs; trusted_connection=true;";
@@ -45,29 +45,19 @@ namespace DescribeCarTests
         }
 
         [TestMethod]
-        public void CarSqlDAOReturnsAVehicleSpecsObject()
+        public void RecordsSqlDAOReturnsListOfRecords()
         {
-            CarSqlDAO dao = new CarSqlDAO(connectionString);
-            VehicleSpecs test = dao.GetSpecs(carId);
-            Assert.IsNotNull(test);
-            Assert.AreEqual("2003", test.Year);
-            Assert.AreEqual("\"16\" diameter, 6.5\" width", test.WheelSize);
+            RecordsSqlDAO dao = new RecordsSqlDAO(connectionString);
+            List<Record> records = dao.GetRecords(carId);
+            Assert.AreEqual(5, records.Count);
         }
 
         [TestMethod]
-        public void CarSqlDAOReturnsListOfPics()
+        public void RecordsSqlDAOReturnsListOfZeroWithInvalidCarId()
         {
-            CarSqlDAO dao = new CarSqlDAO(connectionString);
-            List<Pic> pics = dao.GetPics(carId);
-            Assert.AreEqual(3, pics.Count);
-        }
-
-        [TestMethod]
-        public void CarSqlDAOReturnsListOfZeroPicsWithInvalidCarId()
-        {
-            CarSqlDAO dao = new CarSqlDAO(connectionString);
-            List<Pic> pics = dao.GetPics(-1);
-            Assert.AreEqual(0, pics.Count);
+            RecordsSqlDAO dao = new RecordsSqlDAO(connectionString);
+            List<Record> records = dao.GetRecords(-1);
+            Assert.AreEqual(0, records.Count);
         }
     }
 }
