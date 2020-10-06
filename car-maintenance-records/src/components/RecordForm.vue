@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="addRecord" @reset.prevent="resetForm">
     <button
-      class="btn btn-info btn-margin"
+      class="btn btn-info btn-margin btn-animation"
       @click.prevent="() => {isShowForm = !isShowForm}"
     >{{showFormButton}}</button>
 
@@ -106,4 +106,15 @@ export default {
     display: flex;
     flex-direction: column;
 }
+@keyframes jump {
+   from {bottom: 0px}
+   to {bottom: 10px}
+}
+.btn-animation:hover {
+  position: relative;
+  animation-name: jump;
+  animation-duration: 1s;
+  
+}
+
 </style>
